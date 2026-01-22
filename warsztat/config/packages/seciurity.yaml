@@ -1,4 +1,0 @@
-security:
-    access_control:
-        - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

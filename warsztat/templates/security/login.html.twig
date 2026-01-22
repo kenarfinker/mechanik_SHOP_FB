@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block body %}
+<h2>Logowanie</h2>
+
+{% if error %}
+    <div style="color:red">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+<form method="post">
+    <label>Email</label><br>
+    <input type="email" name="_username" value="{{ last_username }}" required><br><br>
+
+    <label>Hasło</label><br>
+    <input type="password" name="_password" required><br><br>
+
+    <button type="submit">Zaloguj</button>
+</form>
+{% endblock %}
