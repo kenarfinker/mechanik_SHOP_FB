@@ -22,4 +22,6 @@ security:
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/mechanik, roles: ROLE_MECHANIK }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
