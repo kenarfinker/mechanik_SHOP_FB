@@ -9,6 +9,9 @@
 
 <header>
     <h1>Warsztat Samochodowy</h1>
+    {% if app.user %}
+    <a href="{{ path('app_logout') }}">Wyloguj</a>
+    {% endif %}
     <nav>
         <a href="/">Strona główna</a>
         <a href="/oferta">Oferta</a>
