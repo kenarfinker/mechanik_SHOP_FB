@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Moje zlecenia{% endblock %}
+
+{% block body %}
+<h1>Moje zlecenia do edycji</h1>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status</th>
+      <th>Data przyjęcia</th>
+      <th>Data zakończenia</th>
+      <th>Opis</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for z in zlecenia %}
+      <tr>
+        <td>{{ z.id }}</td>
+        <td>{{ z.status }}</td>
+        <td>{{ z.data_przyjecia }}</td>
+        <td>{{ z.data_zakonczenia ?: '—' }}</td>
+        <td>{{ z.opis ?: '—' }}</td>
+        <td>
+          <a href="{{ path('zlecenie_edytuj', { id: z.id }) }}">Edytuj</a>
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="6">Brak zleceń do edycji.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{{ path('mechanik_panel') }}">← Wróć do panelu</a></p>
+{% endblock %}

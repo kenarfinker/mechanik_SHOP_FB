@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Auta{% endblock %}
+
+{% block body %}
+<h1>Lista aut</h1>
+
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Auto</th>
+      <th>Rejestracja</th>
+      <th>VIN</th>
+      <th>Właściciel</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in auta %}
+      <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.marka }} {{ a.model }}{% if a.rok_produkcji %} ({{ a.rok_produkcji }}){% endif %}</td>
+        <td>{{ a.numer_rejestracyjny ?? '—' }}</td>
+        <td>{{ a.vin ?? '—' }}</td>
+        <td>{{ a.wlasciciel_imie }} {{ a.wlasciciel_nazwisko }}</td>
+        <td>
+          <a href="{{ path('mechanik_zlecenie_nowe', { samochodId: a.id }) }}">Dodaj naprawę</a>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6">Brak aut.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<p><a href="{{ path('mechanik_panel') }}">← Wróć do panelu</a></p>
+{% endblock %}

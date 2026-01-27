@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}Magazyn{% endblock %}
+
+{% block body %}
+<h1>Magazyn</h1>
+
+<h3>Dodaj nową pozycję</h3>
+<form method="post">
+  <input type="hidden" name="_token" value="{{ csrf_token('magazyn_add') }}">
+
+  <input type="text" name="nazwa" placeholder="Nazwa" required>
+  <input type="number" name="ilosc" placeholder="Ilość" value="0" min="0">
+  <input type="text" name="kod_ean" placeholder="EAN">
+  <input type="text" name="kod_magazynowy" placeholder="Kod magazynowy" required>
+
+  <button type="submit">Dodaj</button>
+</form>
+
+<hr>
+
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nazwa</th>
+      <th>Ilość</th>
+      <th>EAN</th>
+      <th>Kod magazynowy</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in pozycje %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nazwa }}</td>
+        <td>{{ p.ilosc }}</td>
+        <td>{{ p.kod_ean ?: '—' }}</td>
+        <td>{{ p.kod_magazynowy }}</td>
+        <td>
+          <a href="{{ path('magazyn_edytuj', {id: p.id}) }}">Edytuj</a>
+          <form method="post" action="{{ path('magazyn_usun', {id: p.id}) }}" style="display:inline">
+            <input type="hidden" name="_token" value="{{ csrf_token('magazyn_del_' ~ p.id) }}">
+            <button type="submit" onclick="return confirm('Usunąć pozycję?')">Usuń</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="6">Brak pozycji.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
