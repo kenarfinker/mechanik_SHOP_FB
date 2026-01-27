@@ -9,9 +9,22 @@
 
 <header>
     <h1>Warsztat Samochodowy</h1>
-    {% if app.user %}
-    <a href="{{ path('app_logout') }}">Wyloguj</a>
+   {% if app.user %}
+    {% if 'ROLE_ADMIN' in app.user.roles %}
+        <a href="/admin">Admin</a>
     {% endif %}
+
+    {% if 'ROLE_MECHANIK' in app.user.roles %}
+        <a href="/mechanik">Mechanik</a>
+    {% endif %}
+
+    {% if 'ROLE_KLIENT' in app.user.roles %}
+        <a href="/klient">Klient</a>
+    {% endif %}
+
+    <a href="{{ path('app_logout') }}">Wyloguj</a>
+{% endif %}
+
     <nav>
         <a href="/">Strona główna</a>
         <a href="/oferta">Oferta</a>

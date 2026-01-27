@@ -20,6 +20,7 @@ security:
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/logout, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/mechanik, roles: ROLE_MECHANIK }
         - { path: ^/klient, roles: ROLE_KLIENT }

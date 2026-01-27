@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel mechanika{% endblock %}
+
+{% block body %}
+<h1>Panel mechanika</h1>
+
+<p>Witaj {{ app.user.imie }}!</p>
+
+<ul>
+    <li><a href="#">Moje zlecenia</a></li>
+    <li><a href="#">Historia zleceń</a></li>
+</ul>
+{% endblock %}
