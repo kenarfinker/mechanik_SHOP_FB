@@ -8,7 +8,7 @@
 <p>Witaj {{ app.user.imie }} {{ app.user.nazwisko }}!</p>
 
 <ul>
-    <li><a href="#">Moje samochody</a></li>
+    <li><a href="{{ path('klient_samochody') }}">Moje samochody</a></li>
     <li><a href="#">Moje zlecenia</a></li>
 </ul>
 {% endblock %}

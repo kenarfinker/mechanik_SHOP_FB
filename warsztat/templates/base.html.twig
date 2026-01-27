@@ -11,15 +11,15 @@
     <h1>Warsztat Samochodowy</h1>
    {% if app.user %}
     {% if 'ROLE_ADMIN' in app.user.roles %}
-        <a href="/admin">Admin</a>
+        <a href="/admin">Profil</a>
     {% endif %}
 
     {% if 'ROLE_MECHANIK' in app.user.roles %}
-        <a href="/mechanik">Mechanik</a>
+        <a href="/mechanik">Profil</a>
     {% endif %}
 
     {% if 'ROLE_KLIENT' in app.user.roles %}
-        <a href="/klient">Klient</a>
+        <a href="/klient">Profil</a>
     {% endif %}
 
     <a href="{{ path('app_logout') }}">Wyloguj</a>
