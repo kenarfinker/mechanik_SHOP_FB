@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edytuj zlecenie #{{ zlecenie.id }}{% endblock %}
+
+{% block body %}
+<h1>Edytuj zlecenie #{{ zlecenie.id }}</h1>
+
+<form method="post">
+  <input type="hidden" name="_token" value="{{ csrf_token('zlecenie_edit_' ~ zlecenie.id) }}">
+
+  <div>
+    <label>Status:</label>
+    <select name="status_id" id="status_id" required>
+      {% for s in statusy %}
+        <option value="{{ s.id }}" {% if s.id == zlecenie.status_id %}selected{% endif %}>
+          {{ s.nazwa }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div style="margin-top:10px;">
+    <label>Data zakończenia (YYYY-MM-DD):</label>
+    <input
+      type="text"
+      id="data_zakonczenia"
+      name="data_zakonczenia"
+      value="{{ zlecenie.data_zakonczenia ?? '' }}"
+      placeholder="YYYY-MM-DD"
+    >
+  </div>
+
+  <div style="margin-top:10px;">
+    <label>Opis:</label><br>
+    <textarea name="opis" rows="5" cols="60">{{ zlecenie.opis ?? '' }}</textarea>
+  </div>
+
+  <div style="margin-top:10px;">
+    <button type="submit">Zapisz</button>
+    <a href="{{ path('moje_zlecenia') }}">Anuluj</a>
+  </div>
+</form>
+
+{% set ZAKONCZONE_ID = zakonczone_id %}
+
+<script>
+  (function () {
+    const ZAKONCZONE_ID = {{ ZAKONCZONE_ID }};
+    const statusSelect = document.getElementById('status_id');
+    const dataInput = document.getElementById('data_zakonczenia');
+
+    if (!statusSelect || !dataInput) return;
+
+    function todayYMD() {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    statusSelect.addEventListener('change', () => {
+      const selectedId = parseInt(statusSelect.value, 10);
+      if (selectedId === ZAKONCZONE_ID && !dataInput.value.trim()) {
+        dataInput.value = todayYMD();
+      }
+    });
+  })();
+</script>
+{% endblock %}
