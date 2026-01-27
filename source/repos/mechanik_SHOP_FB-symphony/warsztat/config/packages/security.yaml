@@ -23,5 +23,5 @@ security:
         - { path: ^/logout, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/mechanik, roles: [ROLE_MECHANIK, ROLE_ADMIN] }
-        - { path: ^/klient, roles: ROLE_KLIENT }
+        - { path: ^/klient, roles: [ROLE_KLIENT, ROLE_ADMIN] }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
