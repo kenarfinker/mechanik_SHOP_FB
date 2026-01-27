@@ -17,10 +17,10 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        // pobranie błędu logowania (jeśli był)
+        // pobranie błędu logowania
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // ostatnio wpisany login (email)
+
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
@@ -32,7 +32,6 @@ class SecurityController extends AbstractController
     #[Route('/logout', name: 'app_logout')]
     public function logout(): void
     {
-        // Symfony przechwytuje to automatycznie
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
