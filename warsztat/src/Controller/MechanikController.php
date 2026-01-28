@@ -8,9 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MechanikController extends AbstractController
 {
-    #[Route('/mechanik', name: 'mechanik_panel')]
-    public function index(): Response
+     #[Route('/mechanik/katalog', name: 'mechanik_katalog')]
+    public function katalog(): Response
     {
-        return $this->render('mechanik/index.html.twig');
+        return $this->render('mechanik/katalog.html.twig');
     }
+
+    #[Route('/mechanik', name: 'mechanik_panel')]
+public function panel(): Response
+{
+    return $this->render('mechanik/index.html.twig');
 }
+}
+
+
+
+

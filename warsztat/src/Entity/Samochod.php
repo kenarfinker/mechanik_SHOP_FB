@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
+use App\Repository\SamochodRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: SamochodRepository::class)]
 #[ORM\Table(name: 'samochody')]
 class Samochod
 {

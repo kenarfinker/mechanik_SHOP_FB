@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statusy zleceń{% endblock %}
+
+{% block body %}
+<h1>Statusy zleceń</h1>
+
+{% for message in app.flashes('error') %}
+  <div style="color:red">{{ message }}</div>
+{% endfor %}
+{% for message in app.flashes('success') %}
+  <div style="color:green">{{ message }}</div>
+{% endfor %}
+
+<h3>Dodaj nowy status</h3>
+<form method="post" action="{{ path('admin_statusy') }}">
+  <input type="hidden" name="_token" value="{{ csrf_token('status_add') }}">
+
+  <input type="text" name="nazwa" placeholder="np. W trakcie" required>
+  <button type="submit">Dodaj</button>
+</form>
+
+<hr>
+
+<h3>Lista statusów</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nazwa</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in statusy %}
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.nazwa }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="2">Brak statusów.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

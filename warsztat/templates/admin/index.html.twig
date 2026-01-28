@@ -6,9 +6,11 @@
 <h1>Panel administratora</h1>
 
 <ul>
-    <li><a href="#">Użytkownicy</a></li>
-    <li><a href="#">Mechanicy</a></li>
-    <li><a href="#">Zlecenia</a></li>
-    <li><a href="#">Usługi</a></li>
+    <li><a href="{{ path('historia_zlecen') }}">Historia zleceń</a></li>
+    <li><a href="{{ path('mechanik_katalog') }}">Katalog</a></li>
+    <li><a href="{{ path('admin_statusy') }}">Statusy zleceń</a></li>
+    <li><a href="{{ path('magazyn') }}">Magazyn</a></li>
+
+
 </ul>
 {% endblock %}

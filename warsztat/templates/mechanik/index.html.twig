@@ -5,10 +5,18 @@
 {% block body %}
 <h1>Panel mechanika</h1>
 
-<p>Witaj {{ app.user.imie }}!</p>
+{% if app.user %}
+  <p>Witaj {{ app.user.imie }}!</p>
+{% endif %}
 
 <ul>
-    <li><a href="#">Moje zlecenia</a></li>
-    <li><a href="#">Historia zleceń</a></li>
+<li><a href="{{ path('mechanik_auta') }}">Auta</a></li>
+
+  <li><a href="{{ path('mechanik_katalog') }}">Katalog usług</a></li>
+  <li><a href="{{ path('historia_zlecen') }}">Historia zleceń</a></li>
+  <li><a href="{{ path('moje_zlecenia') }}">Moje zlecenia</a></li>
+  <li><a href="{{ path('magazyn') }}">Magazyn</a></li>
+
 </ul>
+
 {% endblock %}

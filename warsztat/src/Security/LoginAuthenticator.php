@@ -27,9 +27,9 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * POBRANIE DANYCH Z FORMULARZA
      */
-    public function authenticate(Request $request): Passport
+     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email');
+        $email = $request->request->get('email', '');
 
         return new Passport(
             new UserBadge($email),
