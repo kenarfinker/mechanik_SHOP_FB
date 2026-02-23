@@ -16,6 +16,13 @@ class Role
     #[ORM\Column(length: 50)]
     private string $nazwa;
 
-    public function getId(): ?int { return $this->id; }
-    public function getNazwa(): string { return $this->nazwa; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getNazwa(): string
+    {
+        return $this->nazwa;
+    }
 }

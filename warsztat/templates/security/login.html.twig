@@ -12,6 +12,10 @@
 {% endif %}
 
 <form method="post">
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
     <label>Email</label><br>
     <input type="email" name="email" value="{{ last_username }}" required><br><br>
 

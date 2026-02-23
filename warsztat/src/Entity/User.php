@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Entity]
 #[ORM\Table(name: 'uzytkownicy')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -29,13 +28,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $haslo;
 
     #[ORM\ManyToOne(targetEntity: Role::class)]
-    #[ORM\JoinColumn(name: 'rola_id', referencedColumnName: 'id')]
+    #[ORM\JoinColumn(name: 'rola_id', referencedColumnName: 'id', nullable: false)]
     private ?Role $rola = null;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(name: 'data_rejestracji', type: 'datetime')]
     private \DateTimeInterface $dataRejestracji;
 
-    // ====== SECURITY ======
+    // ======================
+    // SECURITY
+    // ======================
 
     public function getUserIdentifier(): string
     {
@@ -44,7 +45,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        // Symfony wymaga tablicy ról
         return ['ROLE_' . strtoupper($this->rola->getNazwa())];
     }
 
@@ -53,23 +53,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->haslo;
     }
 
-    public function eraseCredentials(): void {}
+    public function eraseCredentials(): void
+    {}
 
-    // ====== GETTERY / SETTERY ======
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    public function getId(): ?int { return $this->id; }
+    public function getImie(): string
+    {
+        return $this->imie;
+    }
 
-    public function getImie(): string { return $this->imie; }
-    public function setImie(string $imie): self { $this->imie = $imie; return $this; }
+    public function setImie(string $imie): self
+    {
+        $this->imie = $imie;
+        return $this;
+    }
 
-    public function getNazwisko(): string { return $this->nazwisko; }
-    public function setNazwisko(string $nazwisko): self { $this->nazwisko = $nazwisko; return $this; }
+    public function getNazwisko(): string
+    {
+        return $this->nazwisko;
+    }
 
-    public function getEmail(): string { return $this->email; }
-    public function setEmail(string $email): self { $this->email = $email; return $this; }
+    public function setNazwisko(string $nazwisko): self
+    {
+        $this->nazwisko = $nazwisko;
+        return $this;
+    }
 
-    public function setHaslo(string $haslo): self { $this->haslo = $haslo; return $this; }
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
 
-    public function getRola(): ?Role { return $this->rola; }
-    public function setRola(?Role $rola): self { $this->rola = $rola; return $this; }
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setHaslo(string $haslo): self
+    {
+        $this->haslo = $haslo;
+        return $this;
+    }
+
+    public function getRola(): ?Role
+    {
+        return $this->rola;
+    }
+
+    public function setRola(Role $rola): self
+    {
+        $this->rola = $rola;
+        return $this;
+    }
+
+    public function getDataRejestracji(): \DateTimeInterface
+    {
+        return $this->dataRejestracji;
+    }
+
+    public function setDataRejestracji(\DateTimeInterface $data): self
+    {
+        $this->dataRejestracji = $data;
+        return $this;
+    }
 }

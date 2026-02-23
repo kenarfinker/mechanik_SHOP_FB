@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edytuj magazyn{% endblock %}
+
+{% block body %}
+<h1>Edytuj pozycję magazynu</h1>
+
+<form method="post">
+  <input type="hidden" name="_token" value="{{ csrf_token('magazyn_edit_' ~ item.id) }}">
+
+  <label>Nazwa</label><br>
+  <input type="text" name="nazwa" value="{{ item.nazwa }}" required><br><br>
+
+  <label>Ilość</label><br>
+  <input type="number" name="ilosc" value="{{ item.ilosc }}" min="0"><br><br>
+
+  <label>EAN</label><br>
+  <input type="text" name="kod_ean" value="{{ item.kod_ean }}"><br><br>
+
+  <label>Kod magazynowy</label><br>
+  <input type="text" name="kod_magazynowy" value="{{ item.kod_magazynowy }}" required><br><br>
+
+  <button type="submit">Zapisz</button>
+  <a href="{{ path('magazyn') }}">Anuluj</a>
+</form>
+{% endblock %}

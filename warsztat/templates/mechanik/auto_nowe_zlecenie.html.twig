@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Nowe zlecenie{% endblock %}
+
+{% block body %}
+<h1>Nowe zlecenie</h1>
+
+<p>
+  Auto: <b>{{ samochod.marka }} {{ samochod.model }}</b>
+  {% if samochod.numer_rejestracyjny %} ({{ samochod.numer_rejestracyjny }}){% endif %}
+  <br>
+  Właściciel: {{ samochod.wlasciciel_imie }} {{ samochod.wlasciciel_nazwisko }}
+</p>
+
+{% for message in app.flashes('error') %}
+  <div style="color:red">{{ message }}</div>
+{% endfor %}
+
+<form method="post">
+  <input type="hidden" name="_token" value="{{ csrf_token('zlecenie_new_' ~ samochod.id) }}">
+
+  <div>
+    <label>Usługa z katalogu:</label>
+    <select name="usluga_id" required>
+      {% for u in uslugi %}
+        <option value="{{ u.id }}">{{ u.nazwa }} — {{ u.cena }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div style="margin-top:10px;">
+    <label>Opis (opcjonalnie):</label><br>
+    <textarea name="opis" rows="5" cols="60"></textarea>
+  </div>
+
+  <div style="margin-top:10px;">
+    <button type="submit">Utwórz zlecenie</button>
+    <a href="{{ path('mechanik_auta') }}">Anuluj</a>
+  </div>
+</form>
+{% endblock %}
