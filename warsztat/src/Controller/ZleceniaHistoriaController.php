@@ -67,7 +67,7 @@ class ZleceniaHistoriaController extends AbstractController
             ";
             $zlecenia = $conn->fetchAllAssociative($sql);
         } else {
-            $userId = $this->getUser()->getId();
+            $userId = dd($this->getUser());
 
             $mechanikId = $conn->fetchOne(
                 'SELECT id FROM mechanicy WHERE uzytkownik_id = ?',

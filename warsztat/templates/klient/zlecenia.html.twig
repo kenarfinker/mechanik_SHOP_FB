@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Moje zlecenia{% endblock %}
+
+{% block body %}
+<h1>Moje zlecenia</h1>
+
+{% if zlecenia is empty %}
+    <p>Nie masz jeszcze żadnych zleceń.</p>
+{% else %}
+<table border="1" cellpadding="6">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Samochód</th>
+            <th>Data przyjęcia</th>
+            <th>Status</th>
+            <th>Opis</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for z in zlecenia %}
+        <tr>
+            <td>{{ z.id }}</td>
+            <td>
+                {{ z.samochod.marka }}
+                {{ z.samochod.model }}
+                ({{ z.samochod.numerRejestracyjny }})
+            </td>
+            <td>{{ z.dataPrzyjecia|date('Y-m-d H:i') }}</td>
+            <td>{{ z.status.nazwa }}</td>
+            <td>{{ z.opis }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<br>
+<a href="{{ path('klient_panel') }}">← Powrót do panelu</a>
+{% endblock %}
