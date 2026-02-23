@@ -20,8 +20,11 @@ security:
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/kontakt, roles: PUBLIC_ACCESS }
+        - { path: ^/oferta, roles: PUBLIC_ACCESS }
         - { path: ^/logout, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/mechanik, roles: [ROLE_MECHANIK, ROLE_ADMIN] }
         - { path: ^/klient, roles: [ROLE_KLIENT, ROLE_ADMIN] }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        

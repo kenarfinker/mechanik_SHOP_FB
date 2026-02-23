@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Warsztat samochodowy{% endblock %}</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
 <header>
     <h1>Warsztat Samochodowy</h1>
-   {% if app.user %}
+    {% if app.user %}
     {% if 'ROLE_ADMIN' in app.user.roles %}
         <a href="/admin">Profil</a>
     {% endif %}
@@ -27,8 +27,8 @@
 
     <nav>
         <a href="/">Strona główna</a>
-        <a href="/oferta">Oferta</a>
-        <a href="/kontakt">Kontakt</a>
+        <a href="{{ path('oferta') }}">Oferta</a>
+        <a href="{{ path('kontakt') }}">Kontakt</a>
     </nav>
 </header>
 

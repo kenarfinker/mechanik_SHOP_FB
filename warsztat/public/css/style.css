@@ -1,26 +1,123 @@
-body {
-    font-family: Arial, sans-serif;
+/* =========================
+    RESET
+========================= */
+html, body {
     margin: 0;
+    padding: 0;
 }
 
-header {
-    background: #222;
-    color: #fff;
-    padding: 15px;
+/* =========================
+    BODY
+========================= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* =========================
+    NAVBAR
+========================= */
+nav {
+    background-color: #2c3e50;
+    padding: 15px 20px;
 }
 
 nav a {
-    color: #fff;
+    color: white;
+    text-decoration: none;
     margin-right: 15px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+    GŁÓWNA STRONA
+========================= */
+.page {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 4px;
+}
+
+/* =========================
+    NAGŁÓWKI
+========================= */
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* =========================
+    TABELA
+========================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #eeeeee;
+}
+
+/* =========================
+    FORMULARZE
+========================= */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* =========================
+    PRZYCISKI
+========================= */
+button, .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
     text-decoration: none;
 }
 
-main {
-    padding: 20px;
+button:hover, .btn:hover {
+    background-color: #2980b9;
 }
 
+/* =========================
+    STOPKA
+========================= */
 footer {
-    background: #eee;
+    margin-top: 40px;
+    padding: 15px;
     text-align: center;
-    padding: 10px;
+    background-color: #2c3e50;
+    color: white;
+    font-size: 14px;
 }

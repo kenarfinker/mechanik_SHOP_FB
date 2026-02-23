@@ -1,8 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Strona główna{% endblock %}
+{% block title %}Oferta{% endblock %}
 
 {% block body %}
-<h2>Witamy w naszym warsztacie</h2>
-<p>Zajmujemy się kompleksową naprawą samochodów osobowych.</p>
+<h1>Nasza oferta</h1>
+
+{% if uslugi is empty %}
+    <p>Brak usług w ofercie.</p>
+{% else %}
+<table border="1" cellpadding="6">
+    <thead>
+        <tr>
+            <th>Nazwa usługi</th>
+            <th>Cena (PLN)</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for u in uslugi %}
+        <tr>
+            <td>{{ u.nazwa }}</td>
+            <td>{{ u.cena }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
 {% endblock %}
